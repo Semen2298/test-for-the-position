@@ -254,7 +254,7 @@ a {
     border-radius: 24px;
 }
 
-.dropdown-content a {
+.dropdown-content li {
     padding: 14px;
     text-decoration: none;
     display: block;

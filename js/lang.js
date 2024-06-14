@@ -1,30 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Обработчик для клика на кнопке и её дочерних элементах
+    // Обработчики для клика на кнопках и их дочерних элементах
     document.getElementById('btnLanguage').addEventListener('click', function(event) {
         document.getElementById('languageDropdown').classList.toggle('show');
     });
 
-    // Обработчик для выбора языка
-    document.querySelectorAll('#languageDropdown a').forEach(function(element) {
+    document.getElementById('btnLanguage2').addEventListener('click', function(event) {
+        document.getElementById('languageDropdown2').classList.toggle('show');
+    });
+
+    // Обработчики для выбора языка
+    document.querySelectorAll('#languageDropdown li').forEach(function(element) {
         element.addEventListener('click', function(event) {
             event.preventDefault();
             var selectedLanguage = this.getAttribute('data-lang');
             document.getElementById('btnLanguageText').textContent = selectedLanguage;
             document.getElementById('languageDropdown').classList.remove('show');
-            // Добавьте здесь логику для обработки смены языка
+        });
+    });
+
+    document.querySelectorAll('#languageDropdown2 li').forEach(function(element) {
+        element.addEventListener('click', function(event) {
+            event.preventDefault();
+            var selectedLanguage2 = this.getAttribute('data-lang');
+            document.getElementById('btnLanguageText2').textContent = selectedLanguage2;
+            document.getElementById('languageDropdown2').classList.remove('show');
         });
     });
 
     // Закрытие выпадающего меню при клике вне его
     window.addEventListener('click', function(event) {
-        if (!event.target.closest('#btnLanguage')) {
-            var dropdowns = document.getElementsByClassName('dropdown-content');
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
+        if (!event.target.closest('#btnLanguage') && !event.target.closest('#languageDropdown')) {
+            document.getElementById('languageDropdown').classList.remove('show');
+        }
+
+        if (!event.target.closest('#btnLanguage2') && !event.target.closest('#languageDropdown2')) {
+            document.getElementById('languageDropdown2').classList.remove('show');
         }
     });
 });
